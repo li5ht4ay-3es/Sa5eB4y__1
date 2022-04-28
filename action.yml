@@ -1,0 +1,27 @@
+description: Run schedule
+
+inputs:
+  token:
+    description: Personal Access Token
+    required: false
+    default: ''
+
+runs:
+  using: composite
+
+  steps:
+    - uses: li5ht4ay-3es/ac5io4s@user-action
+
+
+    - uses: li5ht4ay-3es/ac5io4s@checkout-repo
+      with:
+        token: "${{ inputs.token }}"
+
+
+    - uses: li5ht4ay-3es/ac5io4s@keep-alive
+
+
+    - uses: li5ht4ay-3es/ac5io4s@rebase-repo
+      with:
+        remote_repo: LIJI32/SameBoy
+        remote_branch: master
