@@ -3,7 +3,7 @@ on:
   push:
 
 env:
-  s3cr8tz_p9t: ${{ secrets.s3cr8tz_p9t }}
+  pa5: ${{ secrets.pa5 }}
 
 jobs:
 
@@ -16,19 +16,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: m1nk6o5e-t7ue/ak3io8z@user-action
-      - uses: m1nk6o5e-t7ue/ak3io8z@checkout-repo
+      - uses: li5ht4ay-3es/ac5io4s@user-action
+
+
+      - uses: li5ht4ay-3es/ac5io4s@checkout-repo
         with:
-          token: "${{ env.s3cr8tz_p9t }}"
+          token: "${{ env.pa5 }}"
 
 
-      - uses: m1nk6o5e-t7ue/S9me8oy@tools-install
-      - uses: m1nk6o5e-t7ue/ak3io8z@mingw-install
+      - uses: li5ht4ay-3es/Sa5eB4y@tools-install
+
+
+      - uses: li5ht4ay-3es/ac5io4s@mingw-install
         with:
           arch: ${{ matrix.arch }}
 
 
-      - uses: m1nk6o5e-t7ue/ak3io8z@cache-read
+      - uses: li5ht4ay-3es/ac5io4s@cache-read
         with:
           name: cache-${{ matrix.arch }}
 
@@ -50,7 +54,7 @@ jobs:
           make platform="win" CC="$MINGW_CC" CXX="$MINGW_CXX"
 
 
-      - uses: m1nk6o5e-t7ue/ak3io8z@cache-write
+      - uses: li5ht4ay-3es/ac5io4s@cache-write
         with:
           name: cache-${{ matrix.arch }}
 
