@@ -1390,6 +1390,33 @@ void retro_run(void)
 
     upload_output_audio_buffer();
     initialized = true;
+
+    retro_osd_message_send(environ_cb);
+}
+
+static enum rom_type check_rom_header(const uint8_t *data, size_t size)
+{
+    enum rom_type type;
+    uint8_t cgb_flag;
+    uint8_t sgb_flag;
+
+    if (!data || (size < 0x146 + 1)) {
+        return ROM_TYPE_INVALID;
+    }
+
+    type     = ROM_TYPE_DMG;
+    cgb_flag = data[0x143];
+    sgb_flag = data[0x146];
+
+    if ((cgb_flag == 0x80) || (cgb_flag == 0xC0)) {
+        type = ROM_TYPE_CGB;
+    }
+
+    if ((type == ROM_TYPE_DMG) && (sgb_flag == 0x03)) {
+        type = ROM_TYPE_SGB;
+    }
+
+    return type;
 }
 
 static enum rom_type check_rom_header(const uint8_t *data, size_t size)
