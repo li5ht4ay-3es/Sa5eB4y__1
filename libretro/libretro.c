@@ -1166,6 +1166,16 @@ static void check_variables()
         }
 
     }
+<<<<<<< HEAD
+=======
+
+    RETRO_GETVARS_CROP_BORDER
+    RETRO_GETVARS_FAST_BOOTROM
+    RETRO_GETVARS_SPRITE_LIMIT
+    RETRO_GETVARS_VIDEO_OVERCLOCK
+    RETRO_GETVARS_VOLUME_LEVEL
+
+>>>>>>> b01b2f4 (Complete DualShock 3 support)
     set_variable_visibility();
 }
 
