@@ -487,7 +487,12 @@ static void add_object_from_index(GB_gameboy_t *gb, unsigned index)
         gb->mode2_x_bus = oam_read(gb, index * 4 + 1);
     }
 
+<<<<<<< HEAD
     if (gb->n_visible_objs == 10) return;
+=======
+    extern int retro_sprite_limit;
+    if (gb->n_visible_objs == retro_sprite_limit) return;
+>>>>>>> 935f718 (Complete DualShock 3 support)
     
     /* TODO: It appears that DMA blocks PPU access to OAM, but it needs verification. */
     if (unlikely(GB_is_dma_active(gb) && (gb->halted || gb->stopped))) {
@@ -1734,8 +1739,15 @@ void GB_display_run(GB_gameboy_t *gb, unsigned cycles, bool force)
                     
                     while (gb->fetcher_state < 5 || fifo_size(&gb->bg_fifo) == 0) {
                         advance_fetcher_state_machine(gb, &cycles);
+<<<<<<< HEAD
                         gb->cycles_for_line++;
                         GB_SLEEP(gb, display, 27, 1);
+=======
+                        if (gb->n_visible_objs <= 10) {
+                            gb->cycles_for_line++;
+                            GB_SLEEP(gb, display, 27, 1);
+                        }
+>>>>>>> 935f718 (Complete DualShock 3 support)
                         if (gb->object_fetch_aborted) {
                             goto abort_fetching_object;
                         }
@@ -1743,8 +1755,15 @@ void GB_display_run(GB_gameboy_t *gb, unsigned cycles, bool force)
                     
                     /* TODO: Can this be deleted?  { */
                     advance_fetcher_state_machine(gb, &cycles);
+<<<<<<< HEAD
                     gb->cycles_for_line++;
                     GB_SLEEP(gb, display, 41, 1);
+=======
+                    if (gb->n_visible_objs <= 10) {
+                        gb->cycles_for_line++;
+                        GB_SLEEP(gb, display, 41, 1);
+                    }
+>>>>>>> 935f718 (Complete DualShock 3 support)
                     if (gb->object_fetch_aborted) {
                         goto abort_fetching_object;
                     }
@@ -1755,8 +1774,15 @@ void GB_display_run(GB_gameboy_t *gb, unsigned cycles, bool force)
                     gb->mode2_y_bus = oam_read(gb, gb->visible_objs[gb->n_visible_objs - 1] * 4 + 2);
                     gb->object_flags = oam_read(gb, gb->visible_objs[gb->n_visible_objs - 1] * 4 + 3);
                                         
+<<<<<<< HEAD
                     gb->cycles_for_line += 2;
                     GB_SLEEP(gb, display, 20, 2);
+=======
+                    if (gb->n_visible_objs <= 10) {
+                        gb->cycles_for_line += 2;
+                        GB_SLEEP(gb, display, 20, 2);
+                    }
+>>>>>>> 935f718 (Complete DualShock 3 support)
                     if (gb->object_fetch_aborted) {
                         goto abort_fetching_object;
                     }
@@ -1770,15 +1796,29 @@ void GB_display_run(GB_gameboy_t *gb, unsigned cycles, bool force)
                     gb->object_tile_data[0] = vram_read(gb, gb->object_low_line_address);
 
                     
+<<<<<<< HEAD
                     gb->cycles_for_line += 2;
                     GB_SLEEP(gb, display, 39, 2);
+=======
+                    if (gb->n_visible_objs <= 10) {
+                        gb->cycles_for_line += 2;
+                        GB_SLEEP(gb, display, 39, 2);
+                    }
+>>>>>>> 935f718 (Complete DualShock 3 support)
                     if (gb->object_fetch_aborted) {
                         goto abort_fetching_object;
                     }
                     
                     gb->during_object_fetch = false;
+<<<<<<< HEAD
                     gb->cycles_for_line++;
                     GB_SLEEP(gb, display, 40, 1);
+=======
+                    if (gb->n_visible_objs <= 10) {
+                        gb->cycles_for_line++;
+                        GB_SLEEP(gb, display, 40, 1);
+                    }
+>>>>>>> 935f718 (Complete DualShock 3 support)
                     
                     /* TODO: timing not verified */
                     dma_sync(gb, &cycles);

@@ -17,11 +17,25 @@ ifeq ($(PLATFORM),windows32)
 _ := $(shell chcp 65001)
 EXESUFFIX:=.exe
 NATIVE_CC = clang -IWindows -Wno-deprecated-declarations --target=i386-pc-windows
+<<<<<<< HEAD
 SDL_AUDIO_DRIVERS ?= xaudio2 xaudio2_7 sdl
 else
 EXESUFFIX:=
 NATIVE_CC := cc
 SDL_AUDIO_DRIVERS ?= sdl
+=======
+<<<<<<< HEAD
+SDL_AUDIO_DRIVER ?= xaudio2
+else
+EXESUFFIX:=
+NATIVE_CC := cc
+SDL_AUDIO_DRIVER ?= sdl
+=======
+else
+EXESUFFIX:=
+NATIVE_CC := cc
+>>>>>>> 935f718 (Complete DualShock 3 support)
+>>>>>>> 35e0d44 (Complete DualShock 3 support)
 endif
 
 PB12_COMPRESS := build/pb12$(EXESUFFIX)
