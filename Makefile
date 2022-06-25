@@ -18,6 +18,7 @@ _ := $(shell chcp 65001)
 EXESUFFIX:=.exe
 NATIVE_CC = clang -IWindows -Wno-deprecated-declarations --target=i386-pc-windows
 <<<<<<< HEAD
+<<<<<<< HEAD
 SDL_AUDIO_DRIVERS ?= xaudio2 xaudio2_7 sdl
 else
 EXESUFFIX:=
@@ -25,17 +26,22 @@ NATIVE_CC := cc
 SDL_AUDIO_DRIVERS ?= sdl
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> b897ef7 (Update Makefile)
 SDL_AUDIO_DRIVER ?= xaudio2
 else
 EXESUFFIX:=
 NATIVE_CC := cc
 SDL_AUDIO_DRIVER ?= sdl
+<<<<<<< HEAD
 =======
 else
 EXESUFFIX:=
 NATIVE_CC := cc
 >>>>>>> bdbd335 (Complete DualShock 3 support)
 >>>>>>> 5794699 (Complete DualShock 3 support)
+=======
+>>>>>>> b897ef7 (Update Makefile)
 endif
 
 PB12_COMPRESS := build/pb12$(EXESUFFIX)
