@@ -11,6 +11,7 @@ void GB_audio_clear_queue(void);
 unsigned GB_audio_get_frequency(void);
 size_t GB_audio_get_queue_length(void);
 void GB_audio_queue_sample(GB_sample_t *sample);
+<<<<<<< HEAD
 bool GB_audio_init(void);
 void GB_audio_deinit(void);
 const char *GB_audio_driver_name(void);
@@ -41,5 +42,8 @@ typedef struct {
 }
 
 #define GB_AUDIO_DRIVER_REF(name) ({extern const GB_audio_driver_t name##driver; &name##driver;})
+=======
+void GB_audio_init(void);
+>>>>>>> 0999809 (Fixed a bug where SameBoy freeze for a moment after leaving turbo mode)
 
 #endif /* sdl_audio_h */

@@ -29,16 +29,31 @@ static SDL_AudioSpec want_aspec, have_aspec;
 static unsigned buffer_pos = 0;
 static GB_sample_t audio_buffer[AUDIO_BUFFER_SIZE];
 
+<<<<<<< HEAD
 static bool _audio_is_playing(void)
+=======
+bool GB_audio_is_playing(void)
+>>>>>>> 0999809 (Fixed a bug where SameBoy freeze for a moment after leaving turbo mode)
 {
     return SDL_GetAudioDeviceStatus(device_id) == SDL_AUDIO_PLAYING;
 }
 
+<<<<<<< HEAD
 static void _audio_clear_queue(void)
+=======
+void GB_audio_set_paused(bool paused)
+{
+    GB_audio_clear_queue();
+    SDL_PauseAudioDevice(device_id, paused);
+}
+
+void GB_audio_clear_queue(void)
+>>>>>>> 0999809 (Fixed a bug where SameBoy freeze for a moment after leaving turbo mode)
 {
     SDL_ClearQueuedAudio(device_id);
 }
 
+<<<<<<< HEAD
 static void _audio_set_paused(bool paused)
 {
     _audio_clear_queue();
@@ -46,16 +61,27 @@ static void _audio_set_paused(bool paused)
 }
 
 static unsigned _audio_get_frequency(void)
+=======
+unsigned GB_audio_get_frequency(void)
+>>>>>>> 0999809 (Fixed a bug where SameBoy freeze for a moment after leaving turbo mode)
 {
     return have_aspec.freq;
 }
 
+<<<<<<< HEAD
 static size_t _audio_get_queue_length(void)
+=======
+size_t GB_audio_get_queue_length(void)
+>>>>>>> 0999809 (Fixed a bug where SameBoy freeze for a moment after leaving turbo mode)
 {
     return SDL_GetQueuedAudioSize(device_id) / sizeof(GB_sample_t);
 }
 
+<<<<<<< HEAD
 static void _audio_queue_sample(GB_sample_t *sample)
+=======
+void GB_audio_queue_sample(GB_sample_t *sample)
+>>>>>>> 0999809 (Fixed a bug where SameBoy freeze for a moment after leaving turbo mode)
 {
     audio_buffer[buffer_pos++] = *sample;
 
@@ -65,7 +91,11 @@ static void _audio_queue_sample(GB_sample_t *sample)
     }
 }
 
+<<<<<<< HEAD
 static bool _audio_init(void)
+=======
+void GB_audio_init(void)
+>>>>>>> 0999809 (Fixed a bug where SameBoy freeze for a moment after leaving turbo mode)
 {
     if (SDL_Init(SDL_INIT_AUDIO) != 0) {
         printf("Failed to initialize SDL audio: %s", SDL_GetError());
@@ -98,6 +128,7 @@ static bool _audio_init(void)
 #endif
     
     device_id = SDL_OpenAudioDevice(0, 0, &want_aspec, &have_aspec, SDL_AUDIO_ALLOW_FREQUENCY_CHANGE | SDL_AUDIO_ALLOW_SAMPLES_CHANGE);
+<<<<<<< HEAD
     
     return true;
 }
@@ -109,3 +140,6 @@ void _audio_deinit(void)
 }
 
 GB_AUDIO_DRIVER(SDL);
+=======
+}
+>>>>>>> 0999809 (Fixed a bug where SameBoy freeze for a moment after leaving turbo mode)

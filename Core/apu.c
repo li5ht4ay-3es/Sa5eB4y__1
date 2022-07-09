@@ -225,8 +225,11 @@ static void render(GB_gameboy_t *gb)
         gb->apu_output.last_update[i] = 0;
     }
     gb->apu_output.cycles_since_render = 0;
+<<<<<<< HEAD
     
     if (gb->sgb && gb->sgb->intro_animation < GB_SGB_INTRO_ANIMATION_LENGTH) return;
+=======
+>>>>>>> 0999809 (Fixed a bug where SameBoy freeze for a moment after leaving turbo mode)
 
     GB_sample_t filtered_output = gb->apu_output.highpass_mode?
         (GB_sample_t) {output.left - gb->apu_output.highpass_diff.left,

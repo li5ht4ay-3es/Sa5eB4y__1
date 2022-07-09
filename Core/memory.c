@@ -1433,6 +1433,7 @@ static void write_high_memory(GB_gameboy_t *gb, uint16_t addr, uint8_t value)
 
             case GB_IO_LCDC:
                 if ((value & 0x80) && !(gb->io_registers[GB_IO_LCDC] & 0x80)) {
+<<<<<<< HEAD
                     // LCD turned on
                     if (!gb->lcd_disabled_outside_of_vblank &&
                         (gb->cycles_since_vblank_callback > 10 * 456 || GB_is_sgb(gb))) {
@@ -1440,6 +1441,23 @@ static void write_high_memory(GB_gameboy_t *gb, uint16_t addr, uint8_t value)
                         GB_display_vblank(gb, GB_VBLANK_TYPE_ARTIFICIAL);
                     }
 
+=======
+                    if (value & 0x80) {
+                        // LCD turned on
+                        if (!gb->lcd_disabled_outside_of_vblank &&
+                            (gb->cycles_since_vblank_callback > 10 * 456 || GB_is_sgb(gb))) {
+                            // Trigger a vblank here so we don't exceed LCDC_PERIOD
+                            GB_display_vblank(gb);
+                        }
+                    }
+                    else {
+                        // LCD turned off
+                        if (gb->current_line < 144) {
+                             // ROM might be repeatedly disabling LCDC outside of vblank, avoid callback spam
+                            gb->lcd_disabled_outside_of_vblank = true;
+                        }
+                    }
+>>>>>>> 0999809 (Fixed a bug where SameBoy freeze for a moment after leaving turbo mode)
                     gb->display_cycles = 0;
                     gb->display_state = 0;
                     gb->double_speed_alignment = 0;

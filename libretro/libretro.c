@@ -244,16 +244,28 @@ static void audio_callback(GB_gameboy_t *gb, GB_sample_t *sample)
         ensure_output_audio_buffer_capacity(output_audio_buffer.capacity * 1.5);
     }
 
+<<<<<<< HEAD
     output_audio_buffer.data[output_audio_buffer.size++] = sample->left;
     output_audio_buffer.data[output_audio_buffer.size++] = sample->right;
 }
 
 static void vblank1(GB_gameboy_t *gb, GB_vblank_type_t type)
+=======
+    output_audio_buffer.data[output_audio_buffer.size++] = (sample->left * retro_master_volume) / 100;
+    output_audio_buffer.data[output_audio_buffer.size++] = (sample->right * retro_master_volume) / 100;
+}
+
+static void vblank1(GB_gameboy_t *gb)
+>>>>>>> 0999809 (Fixed a bug where SameBoy freeze for a moment after leaving turbo mode)
 {
     vblank1_occurred = true;
 }
 
+<<<<<<< HEAD
 static void vblank2(GB_gameboy_t *gb, GB_vblank_type_t type)
+=======
+static void vblank2(GB_gameboy_t *gb)
+>>>>>>> 0999809 (Fixed a bug where SameBoy freeze for a moment after leaving turbo mode)
 {
     vblank2_occurred = true;
 }

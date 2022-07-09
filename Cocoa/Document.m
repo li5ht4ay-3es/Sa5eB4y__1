@@ -131,7 +131,11 @@ static void boot_rom_load(GB_gameboy_t *gb, GB_boot_rom_t type)
     [self loadBootROM: type];
 }
 
+<<<<<<< HEAD
 static void vblank(GB_gameboy_t *gb, GB_vblank_type_t type)
+=======
+static void vblank(GB_gameboy_t *gb)
+>>>>>>> 0999809 (Fixed a bug where SameBoy freeze for a moment after leaving turbo mode)
 {
     Document *self = (__bridge Document *)GB_get_user_data(gb);
     [self vblank];
@@ -1367,10 +1371,13 @@ static unsigned *multiplication_table_for_frequency(unsigned frequency)
 
 - (char *) getDebuggerInput
 {
+<<<<<<< HEAD
     bool isPlaying = _audioClient.isPlaying;
     if (isPlaying) {
         [_audioClient stop];
     }
+=======
+>>>>>>> 0999809 (Fixed a bug where SameBoy freeze for a moment after leaving turbo mode)
     [audioLock lock];
     [audioLock signal];
     [audioLock unlock];

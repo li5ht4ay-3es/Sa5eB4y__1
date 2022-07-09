@@ -478,7 +478,11 @@ static uint32_t rgb_encode(GB_gameboy_t *gb, uint8_t r, uint8_t g, uint8_t b)
     return SDL_MapRGB(pixel_format, r, g, b);
 }
 
+<<<<<<< HEAD
 static void vblank(GB_gameboy_t *gb, GB_vblank_type_t type)
+=======
+static void vblank(GB_gameboy_t *gb)
+>>>>>>> 0999809 (Fixed a bug where SameBoy freeze for a moment after leaving turbo mode)
 {
     if (underclock_down && clock_mutliplier > 0.5) {
         clock_mutliplier -= 1.0/16;
