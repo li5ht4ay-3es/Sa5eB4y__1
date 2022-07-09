@@ -276,6 +276,14 @@ typedef enum {
 
 #if !defined(MIN)
 #define MIN(A, B)    ({ __typeof__(A) __a = (A); __typeof__(B) __b = (B); __a < __b ? __a : __b; })
+<<<<<<< HEAD
+=======
+#endif
+
+#if !defined(MAX)
+#define MAX(A, B)    ({ __typeof__(A) __a = (A); __typeof__(B) __b = (B); __a < __b ? __b : __a; })
+#endif
+>>>>>>> 8b6a66d (Fixed a bug where SameBoy freeze for a moment after leaving turbo mode)
 #endif
 
 #if !defined(MAX)

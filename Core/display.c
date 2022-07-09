@@ -106,7 +106,11 @@ typedef struct __attribute__((packed)) {
     uint8_t flags;
 } object_t;
 
+<<<<<<< HEAD
 void GB_display_vblank(GB_gameboy_t *gb, GB_vblank_type_t type)
+=======
+void GB_display_vblank(GB_gameboy_t *gb)
+>>>>>>> 8b6a66d (Fixed a bug where SameBoy freeze for a moment after leaving turbo mode)
 {  
     gb->vblank_just_occured = true;
     gb->cycles_since_vblank_callback = 0;
@@ -211,7 +215,11 @@ void GB_display_vblank(GB_gameboy_t *gb, GB_vblank_type_t type)
     GB_handle_rumble(gb);
 
     if (gb->vblank_callback) {
+<<<<<<< HEAD
         gb->vblank_callback(gb, type);
+=======
+        gb->vblank_callback(gb);
+>>>>>>> 8b6a66d (Fixed a bug where SameBoy freeze for a moment after leaving turbo mode)
     }
     GB_timing_sync(gb);
 }
@@ -473,9 +481,13 @@ static inline uint8_t oam_read(GB_gameboy_t *gb, uint8_t addr)
         if (gb->hdma_in_progress) {
             return GB_read_oam(gb, (gb->hdma_current_src & ~1) | (addr & 1));
         }
+<<<<<<< HEAD
         if (gb->dma_current_dest != 0xA0) {
             return gb->oam[(gb->dma_current_dest & ~1) | (addr & 1)];
         }
+=======
+        return gb->oam[((gb->dma_current_dest - 1 + (gb->halted || gb->stopped)) & ~1) | (addr & 1)];
+>>>>>>> 8b6a66d (Fixed a bug where SameBoy freeze for a moment after leaving turbo mode)
     }
     return gb->oam[addr];
 }
@@ -1374,7 +1386,11 @@ void GB_display_run(GB_gameboy_t *gb, unsigned cycles, bool force)
     /* The PPU does not advance while in STOP mode on the DMG */
     if (gb->stopped && !GB_is_cgb(gb)) {
         if (gb->cycles_since_vblank_callback >= LCDC_PERIOD) {
+<<<<<<< HEAD
             GB_display_vblank(gb, GB_VBLANK_TYPE_ARTIFICIAL);
+=======
+            GB_display_vblank(gb);
+>>>>>>> 8b6a66d (Fixed a bug where SameBoy freeze for a moment after leaving turbo mode)
         }
         return;
     }
@@ -1428,7 +1444,11 @@ void GB_display_run(GB_gameboy_t *gb, unsigned cycles, bool force)
             if (gb->cycles_since_vblank_callback < LCDC_PERIOD) {
                 GB_SLEEP(gb, display, 1, LCDC_PERIOD - gb->cycles_since_vblank_callback);
             }
+<<<<<<< HEAD
             GB_display_vblank(gb, GB_VBLANK_TYPE_LCD_OFF);
+=======
+            GB_display_vblank(gb);
+>>>>>>> 8b6a66d (Fixed a bug where SameBoy freeze for a moment after leaving turbo mode)
             gb->cgb_repeated_a_frame = true;
         }
         return;
@@ -1913,10 +1933,25 @@ skip_slow_mode_3:
                 gb->mode_for_interrupt = 2;
             }
           
+<<<<<<< HEAD
             // Todo: unverified timing
             gb->current_lcd_line++;
             if (gb->current_lcd_line == LINES && GB_is_sgb(gb)) {
                 GB_display_vblank(gb, GB_VBLANK_TYPE_NORMAL_FRAME);
+=======
+            if (gb->current_line == LINES - 1) {
+                extern int get_video_overclock_timer();
+                if (get_video_overclock_timer()) {
+                    gb->current_line--;
+                    gb->current_lcd_line--;
+                }
+            }
+
+            // Todo: unverified timing
+            gb->current_lcd_line++;
+            if (gb->current_lcd_line == LINES && GB_is_sgb(gb)) {
+                GB_display_vblank(gb);
+>>>>>>> 8b6a66d (Fixed a bug where SameBoy freeze for a moment after leaving turbo mode)
             }
             
             if (gb->icd_hreset_callback) {
@@ -1958,13 +1993,21 @@ skip_slow_mode_3:
                 
                 if (gb->frame_skip_state == GB_FRAMESKIP_LCD_TURNED_ON) {
                     if (GB_is_cgb(gb)) {
+<<<<<<< HEAD
                         GB_display_vblank(gb, GB_VBLANK_TYPE_NORMAL_FRAME);
+=======
+                        GB_display_vblank(gb);
+>>>>>>> 8b6a66d (Fixed a bug where SameBoy freeze for a moment after leaving turbo mode)
                         gb->frame_skip_state = GB_FRAMESKIP_FIRST_FRAME_SKIPPED;
                     }
                     else {
                         if (!GB_is_sgb(gb) || gb->current_lcd_line < LINES) {
                             gb->is_odd_frame ^= true;
+<<<<<<< HEAD
                             GB_display_vblank(gb, GB_VBLANK_TYPE_NORMAL_FRAME);
+=======
+                            GB_display_vblank(gb);
+>>>>>>> 8b6a66d (Fixed a bug where SameBoy freeze for a moment after leaving turbo mode)
                         }
                         gb->frame_skip_state = GB_FRAMESKIP_SECOND_FRAME_RENDERED;
                     }
@@ -1972,7 +2015,11 @@ skip_slow_mode_3:
                 else {
                     if (!GB_is_sgb(gb) || gb->current_lcd_line < LINES) {
                         gb->is_odd_frame ^= true;
+<<<<<<< HEAD
                         GB_display_vblank(gb, GB_VBLANK_TYPE_NORMAL_FRAME);
+=======
+                        GB_display_vblank(gb);
+>>>>>>> 8b6a66d (Fixed a bug where SameBoy freeze for a moment after leaving turbo mode)
                     }
                     if (gb->frame_skip_state == GB_FRAMESKIP_FIRST_FRAME_SKIPPED) {
                         gb->cgb_repeated_a_frame = true;

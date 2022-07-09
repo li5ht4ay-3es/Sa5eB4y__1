@@ -17,11 +17,17 @@ ifeq ($(PLATFORM),windows32)
 _ := $(shell chcp 65001)
 EXESUFFIX:=.exe
 NATIVE_CC = clang -IWindows -Wno-deprecated-declarations --target=i386-pc-windows
+<<<<<<< HEAD
 SDL_AUDIO_DRIVERS ?= xaudio2 xaudio2_7 sdl
 else
 EXESUFFIX:=
 NATIVE_CC := cc
 SDL_AUDIO_DRIVERS ?= sdl
+=======
+else
+EXESUFFIX:=
+NATIVE_CC := cc
+>>>>>>> 8b6a66d (Fixed a bug where SameBoy freeze for a moment after leaving turbo mode)
 endif
 
 PB12_COMPRESS := build/pb12$(EXESUFFIX)
@@ -50,6 +56,7 @@ endif
 include version.mk
 export VERSION
 CONF ?= debug
+SDL_AUDIO_DRIVER ?= sdl
 
 BIN := build/bin
 OBJ := build/obj
@@ -238,7 +245,11 @@ all: cocoa sdl tester libretro
 # Get a list of our source files and their respective object file targets
 
 CORE_SOURCES := $(shell ls Core/*.c)
+<<<<<<< HEAD
 SDL_SOURCES := $(shell ls SDL/*.c) $(OPEN_DIALOG) $(patsubst %,SDL/audio/%.c,$(SDL_AUDIO_DRIVERS))
+=======
+SDL_SOURCES := $(shell ls SDL/*.c) $(OPEN_DIALOG) SDL/audio/$(SDL_AUDIO_DRIVER).c
+>>>>>>> 8b6a66d (Fixed a bug where SameBoy freeze for a moment after leaving turbo mode)
 TESTER_SOURCES := $(shell ls Tester/*.c)
 
 ifeq ($(PLATFORM),Darwin)

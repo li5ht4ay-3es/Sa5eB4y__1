@@ -123,7 +123,11 @@ static void handle_buttons(GB_gameboy_t *gb)
 
 }
 
+<<<<<<< HEAD
 static void vblank(GB_gameboy_t *gb, GB_vblank_type_t type)
+=======
+static void vblank(GB_gameboy_t *gb)
+>>>>>>> 8b6a66d (Fixed a bug where SameBoy freeze for a moment after leaving turbo mode)
 {
     /* Detect common crashes and stop the test early */
     if (frames < test_length - 1) {

@@ -248,12 +248,20 @@ static void audio_callback(GB_gameboy_t *gb, GB_sample_t *sample)
     output_audio_buffer.data[output_audio_buffer.size++] = sample->right;
 }
 
+<<<<<<< HEAD
 static void vblank1(GB_gameboy_t *gb, GB_vblank_type_t type)
+=======
+static void vblank1(GB_gameboy_t *gb)
+>>>>>>> 8b6a66d (Fixed a bug where SameBoy freeze for a moment after leaving turbo mode)
 {
     vblank1_occurred = true;
 }
 
+<<<<<<< HEAD
 static void vblank2(GB_gameboy_t *gb, GB_vblank_type_t type)
+=======
+static void vblank2(GB_gameboy_t *gb)
+>>>>>>> 8b6a66d (Fixed a bug where SameBoy freeze for a moment after leaving turbo mode)
 {
     vblank2_occurred = true;
 }

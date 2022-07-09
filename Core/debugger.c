@@ -2008,6 +2008,38 @@ static const debugger_command_t commands[] = {
     {"lcd", 3, lcd, "Display information about the current state of the LCD controller"},
     {"palettes", 3, palettes, "Display the current CGB palettes"},
     {"dma", 3, dma, "Display the current OAM DMA status"},
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    {"softbreak", 2, softbreak, "Enable or disable software breakpoints", "(on|off)", .argument_completer = on_off_completer},
+=======
+    {"softbreak", 2, softbreak, "Enable or disables software breakpoints", "(on|off)", .argument_completer = on_off_completer},
+>>>>>>> 8b6a66d (Fixed a bug where SameBoy freeze for a moment after leaving turbo mode)
+    {"breakpoint", 1, breakpoint, "Add a new breakpoint at the specified address/expression" HELP_NEWLINE
+                                  "Can also modify the condition of existing breakpoints." HELP_NEWLINE
+                                  "If the j modifier is used, the breakpoint will occur just before" HELP_NEWLINE
+                                  "jumping to the target.",
+                                  "<expression>[ if <condition expression>]", "j",
+                                  .argument_completer = symbol_completer, .modifiers_completer = j_completer},
+    {"delete", 2, delete, "Delete a breakpoint by its address, or all breakpoints", "[<expression>]", .argument_completer = symbol_completer},
+    {"watch", 1, watch, "Add a new watchpoint at the specified address/expression." HELP_NEWLINE
+                        "Can also modify the condition and type of existing watchpoints." HELP_NEWLINE
+                        "Default watchpoint type is write-only.",
+                        "<expression>[ if <condition expression>]", "(r|w|rw)",
+                        .argument_completer = symbol_completer, .modifiers_completer = rw_completer
+    },
+    {"unwatch", 3, unwatch, "Delete a watchpoint by its address, or all watchpoints", "[<expression>]", .argument_completer = symbol_completer},
+    {"list", 1, list, "List all set breakpoints and watchpoints"},
+    {"print", 1, print, "Evaluate and print an expression" HELP_NEWLINE
+                        "Use modifier to format as an address (a, default) or as a number in" HELP_NEWLINE
+                        "decimal (d), hexadecimal (x), octal (o) or binary (b).",
+                        "<expression>", "format", .argument_completer = symbol_completer, .modifiers_completer = format_completer},
+    {"eval", 2, }, /* Alias */
+    {"examine", 2, examine, "Examine values at address", "<expression>", "count", .argument_completer = symbol_completer},
+    {"x", 1, }, /* Alias */
+    {"disassemble", 1, disassemble, "Disassemble instructions at address", "<expression>", "count", .argument_completer = symbol_completer},
+
+>>>>>>> 5dca889 (Fixed a bug where SameBoy freeze for a moment after leaving turbo mode)
 
     {"help", 1, help, "List available commands or show help for the specified command", "[<command>]"},
     {NULL,}, /* Null terminator */
