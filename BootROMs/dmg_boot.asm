@@ -29,6 +29,10 @@ Start:
     ld a, $54
     ldh [rBGP], a
 
+IF DEF(FAST)
+    ld a, 0
+    ldh [rSCY], a
+ELSE
 ; Load logo from ROM.
 ; A nibble represents a 4-pixels line, 2 bytes represent a 4x4 tile, scaled to 8x8.
 ; Tiles are ordered left to right, top to bottom.
@@ -73,6 +77,10 @@ Start:
 
     ld a, 30
     ldh [rSCY], a
+<<<<<<< HEAD
+=======
+ENDC
+>>>>>>> 1bea1da (Complete DualShock 3 support)
     
     ; Turn on LCD
     ld a, $91
@@ -81,6 +89,7 @@ Start:
     ld d, (-119) & $FF
     ld c, 15
     
+IF !DEF(FAST)
 .animate
     call WaitFrame
     ld a, d
@@ -116,6 +125,7 @@ Start:
     ld b, 60
     call WaitBFrames
     
+ENDC
 ; Set registers to match the original DMG boot
 IF DEF(MGB)
     ld hl, $FFB0
@@ -180,4 +190,8 @@ db $3c,$42,$b9,$a5,$b9,$a5,$42,$3c
 
 SECTION "BootGame", ROM0[$fe]
 BootGame:
+<<<<<<< HEAD
     ldh [rBANK], a ; unmap boot ROM
+=======
+    ldh [rBANK], a ; unmap boot ROM
+>>>>>>> 1bea1da (Complete DualShock 3 support)

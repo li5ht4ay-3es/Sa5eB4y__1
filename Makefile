@@ -17,11 +17,25 @@ ifeq ($(PLATFORM),windows32)
 _ := $(shell chcp 65001)
 EXESUFFIX:=.exe
 NATIVE_CC = clang -IWindows -Wno-deprecated-declarations --target=i386-pc-windows
+<<<<<<< HEAD
 SDL_AUDIO_DRIVERS ?= xaudio2 xaudio2_7 sdl
 else
 EXESUFFIX:=
 NATIVE_CC := cc
 SDL_AUDIO_DRIVERS ?= sdl
+=======
+<<<<<<< HEAD
+SDL_AUDIO_DRIVER ?= xaudio2
+else
+EXESUFFIX:=
+NATIVE_CC := cc
+SDL_AUDIO_DRIVER ?= sdl
+=======
+else
+EXESUFFIX:=
+NATIVE_CC := cc
+>>>>>>> 1bea1da (Complete DualShock 3 support)
+>>>>>>> 524866c (Complete DualShock 3 support)
 endif
 
 PB12_COMPRESS := build/pb12$(EXESUFFIX)
@@ -230,8 +244,20 @@ endif
 
 cocoa: $(BIN)/SameBoy.app
 quicklook: $(BIN)/SameBoy.qlgenerator
+<<<<<<< HEAD
 sdl: $(SDL_TARGET) $(BIN)/SDL/dmg_boot.bin $(BIN)/SDL/mgb_boot.bin $(BIN)/SDL/cgb0_boot.bin $(BIN)/SDL/cgb_boot.bin $(BIN)/SDL/agb_boot.bin $(BIN)/SDL/sgb_boot.bin $(BIN)/SDL/sgb2_boot.bin $(BIN)/SDL/LICENSE $(BIN)/SDL/registers.sym $(BIN)/SDL/background.bmp $(BIN)/SDL/Shaders $(BIN)/SDL/Palettes
+=======
+sdl: $(SDL_TARGET) $(BIN)/SDL/dmg_boot.bin $(BIN)/SDL/mgb_boot.bin $(BIN)/SDL/cgb0_boot.bin $(BIN)/SDL/cgb_boot.bin $(BIN)/SDL/agb_boot.bin $(BIN)/SDL/sgb_boot.bin $(BIN)/SDL/sgb2_boot.bin $(BIN)/SDL/LICENSE $(BIN)/SDL/registers.sym $(BIN)/SDL/background.bmp $(BIN)/SDL/Shaders
+<<<<<<< HEAD
+>>>>>>> 6c5d7b7 (Update Makefile)
 bootroms: $(BIN)/BootROMs/agb_boot.bin $(BIN)/BootROMs/cgb_boot.bin $(BIN)/BootROMs/cgb0_boot.bin $(BIN)/BootROMs/dmg_boot.bin $(BIN)/BootROMs/mgb_boot.bin $(BIN)/BootROMs/sgb_boot.bin $(BIN)/BootROMs/sgb2_boot.bin
+=======
+<<<<<<< HEAD
+bootroms: $(BIN)/BootROMs/agb_boot.bin $(BIN)/BootROMs/cgb_boot.bin $(BIN)/BootROMs/cgb0_boot.bin $(BIN)/BootROMs/dmg_boot.bin $(BIN)/BootROMs/sgb_boot.bin $(BIN)/BootROMs/sgb2_boot.bin
+=======
+bootroms: $(BIN)/BootROMs/agb_boot.bin $(BIN)/BootROMs/cgb_boot.bin $(BIN)/BootROMs/dmg_boot.bin $(BIN)/BootROMs/sgb_boot.bin $(BIN)/BootROMs/sgb2_boot.bin $(BIN)/BootROMs/agb_fast_boot.bin $(BIN)/BootROMs/cgb_fast_boot.bin $(BIN)/BootROMs/dmg_fast_boot.bin
+>>>>>>> 1bea1da (Complete DualShock 3 support)
+>>>>>>> dd87d58 (Update Makefile)
 tester: $(TESTER_TARGET) $(BIN)/tester/dmg_boot.bin $(BIN)/tester/cgb_boot.bin $(BIN)/tester/agb_boot.bin $(BIN)/tester/sgb_boot.bin $(BIN)/tester/sgb2_boot.bin
 all: cocoa sdl tester libretro
 
